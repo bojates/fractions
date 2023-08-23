@@ -15,6 +15,22 @@ RSpec.describe Fraction do
   end
 
   describe 'Adding' do 
+    it 'adds 0 + 0' do 
+      expect(Fraction.new(0) + Fraction.new(0)).to eq 0
+    end
+
+    it 'adds 0 to integer' do 
+      expect(Fraction.new(0) + Fraction.new(7)).to eq 7
+    end
+
+    it 'adds integer to 0' do 
+      expect(Fraction.new(1) + Fraction.new(0)).to eq 1
+    end
+
+    it 'adds negative integer to postive' do 
+      expect(Fraction.new(-10) + Fraction.new(7)).to eq -3
+    end
+
     it 'adds two Fraction objects together' do 
       expect(Fraction.new(1, 3) + Fraction.new(1, 3)).to eq Fraction.new(2, 3)
     end
