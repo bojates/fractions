@@ -4,10 +4,14 @@ class Fraction
   def initialize(numerator, denominator = 1)
     check_input(numerator, denominator)
 
-    @numerator = numerator
-    @denominator = denominator
+    if denominator.negative? && numerator.negative? 
+      denominator = denominator.abs
+      numerator = numerator.abs
+    end
 
-    simplify
+    gcd = gcd(numerator, denominator)
+    @numerator = numerator / gcd
+    @denominator = denominator / gcd
   end
 
   def +(other)
@@ -19,19 +23,6 @@ class Fraction
     numerator == other.numerator && denominator == other.denominator
   end
 
-  protected
-
-  def simplify
-    if denominator.negative? && numerator.negative? 
-      @denominator = denominator.abs
-      @numerator = numerator.abs
-    end
-
-    gcd = gcd(numerator, denominator)
-    @numerator = numerator / gcd
-    @denominator = denominator / gcd
-  end
-  
   private
   
   def gcd(a, b)
