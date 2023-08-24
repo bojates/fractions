@@ -29,16 +29,22 @@ class Fraction
       @numerator = numerator.abs
     end
 
-    denominator.abs.downto(2) do |n| 
-      if numerator % n == 0 && denominator % n == 0
-        @numerator = numerator / n
-        @denominator = denominator / n
-        break
-      end
-    end
+    gcd = gcd(numerator, denominator)
+    @numerator = numerator / gcd
+    @denominator = denominator / gcd
   end
   
   private
+  
+  def gcd(numerator, denominator)
+    denominator.abs.downto(2) do |n| 
+      if numerator % n == 0 && denominator % n == 0
+        return n
+      end
+    end
+    
+    1
+  end
 
   def check_input
     raise ArgumentError, "Denominator can't be 0" if denominator == 0 
