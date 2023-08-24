@@ -67,6 +67,12 @@ RSpec.describe Fraction do
     it 'returns whole numbers with denominators of 1' do 
       expect(Fraction.new(1, 2) + Fraction.new(1, 2)).to eq 1
     end
+
+    it 'moves the sign to the numerator with negatives' do 
+      expect(Fraction.new(1, -5)).to eq Fraction.new(-1, 5)
+      expect(Fraction.new(1, 5) + Fraction.new(2, -5)).to eq Fraction.new(-1, 5)
+      expect(Fraction.new(3, -5) + Fraction.new(2, 5)).to eq Fraction.new(-1, 5)
+    end
     
   end
     
