@@ -10,11 +10,8 @@ class Fraction
   end
 
   def +(other)
-    result = Fraction.new(numerator * other.denominator + other.numerator * denominator, 
+    Fraction.new(numerator * other.denominator + other.numerator * denominator, 
                           denominator * other.denominator)
-
-    result.simplify
-    result
   end
 
   def ==(other)
@@ -36,14 +33,14 @@ class Fraction
   
   private
   
-  def gcd(numerator, denominator)
-    denominator.abs.downto(2) do |n| 
-      if numerator % n == 0 && denominator % n == 0
-        return n
-      end
+  def gcd(a, b)
+    while b != 0
+      t = b
+      b = a % b
+      a = t
     end
-    
-    1
+
+    return a
   end
 
   def check_input
