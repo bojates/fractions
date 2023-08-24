@@ -2,10 +2,11 @@ class Fraction
   attr_reader :numerator, :denominator
 
   def initialize(numerator, denominator = 1)
+    check_input(numerator, denominator)
+
     @numerator = numerator
     @denominator = denominator
 
-    check_input
     simplify
   end
 
@@ -43,7 +44,7 @@ class Fraction
     return a
   end
 
-  def check_input
+  def check_input(numerator, denominator)
     raise ArgumentError, "Denominator can't be 0" if denominator == 0 
     raise ArgumentError, "Numerator missing" if numerator.nil? 
     raise ArgumentError, "Denominator missing" if denominator.nil?
